@@ -29,18 +29,6 @@ async def accept(ctx, user: discord.Member):
 	await user.remove_roles(role1)
 
 
-
-@ds.event
-async def on_message(message):
-	if message.content.startswith('1'):
-		sendchannel = message.channel
-		channelforaccept = ds.get_channel(713364415180832768)
-		print(str(sendchannel) + str(channelforaccept.name))
-		if sendchannel == channelforaccept:
-			channel = ds.get_channel(713368052699365456)
-			author = message.author
-			await channel.send(author.mention + '** подал заявку на сервер**')
-
 token = os.environ.get("BOT_TOKEN")
 
 ds.run(token)
