@@ -42,3 +42,5 @@ async def on_message(message):
 			await channel.send(author.mention + '** подал заявку на сервер**')
 
 token = os.environ.get("BOT_TOKEN")
+
+ds.run(token)
