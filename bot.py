@@ -5,7 +5,8 @@ import os
 ds = commands.Bot(command_prefix='!')
 
 @ds.event
-async def on_message(message):
+async def task(message):
+	await bot.wait_until_ready()
 	if message.content.startswith('1'):
 		sendchannel = message.channel
 		channelforaccept = ds.get_channel(713364415180832768)
