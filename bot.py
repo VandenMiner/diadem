@@ -4,7 +4,18 @@ from discord.utils import get
 import os
 ds = commands.Bot(command_prefix='!')
 
-
+@ds.event
+async def on_message(message):
+	if message.content.startswith('1'):
+		sendchannel = message.channel
+		channelforaccept = ds.get_channel(713364415180832768)
+		print(str(sendchannel) + str(channelforaccept.name))
+		if sendchannel == channelforaccept:
+			channel = ds.get_channel(713368052699365456)
+			author = message.author
+			await channel.send(author.mention + '** подал заявку на сервер**')
+			
+			
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 async def чич(ctx, amount = 100):
