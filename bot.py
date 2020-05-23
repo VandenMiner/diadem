@@ -12,7 +12,7 @@ async def on_ready():
 
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
-async def чич(ctx, amount = 100):
+async def clean(ctx, amount = 100):
 	await ctx.channel.purge(limit = amount)
 
 
