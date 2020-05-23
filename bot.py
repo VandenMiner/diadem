@@ -1,9 +1,7 @@
- 
 import discord
 from discord.ext import commands
 from discord.utils import get
 import os
-
 ds = commands.Bot(command_prefix='!')
 
 @ds.event
@@ -11,7 +9,6 @@ async def on_ready():
 	print(ds.get_all_members)
 	print("Why are you gay?")
 	await ds.change_presence(status=discord.Status.online, activity=discord.Game("Наш ip = \"ЗДЕСЬ МОГЛА БЫТЬ ВАША РЕКЛАМА\""))
-
 
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
@@ -48,7 +45,11 @@ async def on_message(message):
 		if sendchannel == channelforaccept:
 			channel = ds.get_channel(713368052699365456)
 			author = message.author
-			await channel.send(author.mention + '** подал заявку на сервер**')
+			role = get(message.guild.roles, name = 'Игрок')
+			await channel.send(author.mention + '** подал заявку на получение роли **' + role.mention)
+			vanden = ds.get_user(451826240186351616)
+			await vanden.send(author.mention + '** подал заявку на получение роли **' + role.mention)
+			await vanden.send('**Текст:** `' + str(message.content) + '`')
 
 token = os.environ.get("BOT_TOKEN")
 
