@@ -2,6 +2,7 @@
 import discord
 from discord.ext import commands
 from discord.utils import get
+import os
 
 ds = commands.Bot(command_prefix='!')
 
