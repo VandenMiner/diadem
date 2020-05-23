@@ -1,14 +1,10 @@
+ 
 import discord
 from discord.ext import commands
 from discord.utils import get
 
 ds = commands.Bot(command_prefix='!')
 
-@ds.event
-async def on_ready():
-	print(ds.get_all_members)
-	print("Why are you gay?")
-	await ds.change_presence(status=discord.Status.online, activity=discord.Game("Наш ip = \"ЗДЕСЬ МОГЛА БЫТЬ ВАША РЕКЛАМА\""))
 
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
