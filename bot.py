@@ -50,6 +50,77 @@ async def on_message(message):
 			vanden = ds.get_user(451826240186351616)
 			await vanden.send(author.mention + '** подал заявку на получение роли **' + role.mention)
 			await vanden.send('**Текст:** `' + str(message.content) + '`')
+@ds.command(pass_context = True)
+async def sr(ctx):
+	with open('rules.gif', 'rb') as f:
+		pic = discord.File(f)
+		sendpic = discord.Embed(colour = discord.Color.gold())
+		sendpic.set_image(url="https://media.discordapp.net/attachments/713367810985689110/714382571802329159/rules.gif")
+		await ctx.send(embed = sendpic)
+	emojik1 = get(ctx.message.author.guild.emojis, name = "voice")
+	emojik2 = get(ctx.message.author.guild.emojis, name = "prison")
+	emb = discord.Embed(colour = discord.Color.gold())
+	emb.add_field(name = "\u200b", value = f'''{emojik2} **Правила поведения в чате \nЗапрещено:** 
+```ml
+1. Флудить, спамить, злоупотреблять КАПСОМ и изменением текста.
+2. Оскорблять и переходить на личности.
+3. Выяснять отношения.
+4. Провоцировать пользователей сервера.
+5. Разжигание конфликтов которые касаются политических взглядов, нации, вероисповедания, гендерной принадлежности, сексуальной ориентации.
+6. Распространять, постить контент откровенного содержания.
+7. Пинг ролей и злоупотребление пингом администрации без какой либо причины.
+10. Распространение личной информации любых пользователей без их согласия: Фото, телефон, адрес и т.д.
+11. Попрошайничество на сервере.(Например - подарите скин, дайте модератора и т.д.)
+```''')
+	emb1 = discord.Embed(colour = discord.Color.gold())
+	emb1.add_field(name = "\u200b", value = f"""
+{emojik1} **Правила поведения в голосовых каналах \n Запрещено**
+```ml
+12. Оскорблять и переходить на личности.
+13. Провоцировать пользователей сервера.
+14. Злоупотребления трансляций музыки через микрофон. (СаундПад в том числе)
+15. Кричать в микрофон, шуметь микрофоном.
+16. Распространение личной информации любых пользователей без их согласия.
+17. Слишком частое перемещение между голосовыми каналами с целью помешать общению других участников сервера.```""")
+	emb2 = discord.Embed(colour = discord.Color.gold())
+	emb2.add_field(name = "\u200b", value = """**Также запрещено**
+```ml
+18. Продажа, обмен, реклама и т.д.
+19. Приглашать участников сервера на другие сервера/проекты в чате, в ЛС. (Исключение: дискорды стримеров).
+20. Обходить текстовый или голосовой мут любыми способами.```""")
+	emb3 = discord.Embed(colour = discord.Color.gold())
+	emb3.add_field(name = "\u200b", value = """**Примечания:**
+```ml
+'-▰' Модераторы могут самостоятельно определять меру наказания за нарушение вышеизложенных правил.
+'-▰' Администрация оставляет за собой право модерирования любых комментариев, которые посчитает неподобающими в конкретной ситуации.
+'-▰' Администрация в праве в любой момент без предупреждение изменить текущие правила.
+'-▰' За нарушение правил вы можете получить Бан.```""")
+	await ctx.send(embed = emb)
+	await ctx.send(embed = emb1)
+	await ctx.send(embed = emb2)
+	await ctx.send(embed = emb3)
+@ds.event
+async def on_member_join(member):
+    emojik1 = get(member.guild.emojis, name = "vk")
+    channel = ds.get_channel(713305916044214292)
+    emb = discord.Embed(colour = discord.Color.gold())
+    emb.set_author(name = "Добро пожаловать в  официальный Discord \n канал проекта Diadem", icon_url=member.avatar_url)
+    emb.add_field(name = '\u200b', value = f'''**В первую очередь рекомендуем получить**
+**роль для доступа ко всем каналам**
+**[:closed_lock_with_key:Получить роль](https://discord.gg/f3xQBsS)**
+
+**Для комфортного времяпрепровождения**
+**рекомендуем озокомиться с**
+**[:clipboard:Правилами Discord](https://discord.gg/ABppM3S)**
+
+**Полезные ссылки:**
+{emojik1}[Группа Вк](https://vk.com/diadem.mine)
+{emojik1}[Правила Проекта](https://vk.com/@diadem.mine-project-rules)''')
+    emb.set_thumbnail(url = 'https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif')
+    role = get(member.guild.roles, name = 'Без роли')
+    await member.add_roles(role)
+    await channel.send(f'**Приветствую тебя, {member.mention}! :wave:**')
+    await channel.send(embed = emb)
 
 token = os.environ.get("BOT_TOKEN")
 
