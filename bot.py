@@ -50,6 +50,14 @@ async def on_message(message):
 			vanden = ds.get_user(451826240186351616)
 			await vanden.send(author.mention + '** подал заявку на получение роли **' + role.mention)
 			await vanden.send('**Текст:** `' + str(message.content) + '`')
+		fsendchannel = message.channel
+		fchannelforaccept = ds.get_channel(715184789858287636)
+		print(str(fsendchannel) + str(fchannelforaccept.name))
+		if fsendchannel == fchannelforaccept:
+			author = message.author
+			fchannel = ds.get_channel(713368052699365456)
+			fauthor = message.author
+			await fchannel.send(author.mention + '** подал заявку на жалобу **')
 @ds.event
 async def on_member_join(member):
     emojik1 = get(member.guild.emojis, name = "vk")
@@ -59,11 +67,9 @@ async def on_member_join(member):
     emb.add_field(name = '\u200b', value = f'''**В первую очередь рекомендуем получить**
 **роль для доступа ко всем каналам**
 **[:closed_lock_with_key:Получить роль](https://discord.gg/f3xQBsS)**
-
 **Для комфортного времяпрепровождения**
 **рекомендуем озокомиться с**
 **[:clipboard:Правилами Discord](https://discord.gg/ABppM3S)**
-
 **Полезные ссылки:**
 {emojik1}[Группа Вк](https://vk.com/diadem.mine)
 {emojik1}[Правила Проекта](https://vk.com/@diadem.mine-project-rules)''')
@@ -72,6 +78,40 @@ async def on_member_join(member):
     await member.add_roles(role)
     await channel.send(f'**Приветствую тебя, {member.mention}! :wave:**')
     await channel.send(embed = emb)
+
+
+
+@ds.command(pass_context = True)
+@commands.has_permissions(administrator = True)
+async def answer(ctx, arg, member: discord.Member):
+	#Жалоба рассмотрена. Нарушитель понёс наказание. 
+	#Благодарим Вас за ваше обращение!:thumbsup_tone1:
+	channel = ds.get_channel(715184789858287636)
+	await channel.send(member.mention)
+	if arg == "1":
+		emb = discord.Embed(colour = discord.Color.green())
+		emb.set_author(name = "Жалоба рассмотрена. Нарушитель понёс наказание.", icon_url= member.avatar_url)
+		emb.set_thumbnail(url = "https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif")
+		emb.add_field(name = "\u200b", value = """*⁣Благодарим Вас за ваше обращение!*⁣:thumbsup_tone1:""")
+		await channel.send(embed = emb)
+	elif arg == "2":
+		emb = discord.Embed(colour = discord.Color.green())
+		emb.set_author(name = "Жалоба рассмотрена. Всё ваше имущество восстановлено,  нарушитель понёс наказание.", icon_url= member.avatar_url)
+		emb.set_thumbnail(url = "https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif")
+		emb.add_field(name = "\u200b", value = """*Благодарим Вас за ваше обращение!*:thumbsup_tone1:""")
+		await channel.send(embed = emb)
+	elif arg == "3":
+		emb = discord.Embed(colour = discord.Color.green())
+		emb.set_author(name = "⁣Жалоба рассмотрена. Игрок, на которого была подана вами жалоба, получил сообщение от члена админ.состава с целью вернуть вещи/предоставить дополнительную информации. ⁣", icon_url= member.avatar_url)
+		emb.set_thumbnail(url = "https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif")
+		emb.add_field(name = "\u200b", value = """*Благодарим Вас за ваше обращение!*⁣:thumbsup_tone1:""")
+		await channel.send(embed = emb)
+	elif arg == "4":
+		emb = discord.Embed(colour = discord.Color.red())
+		emb.set_author(name = "Отказ в рассмотрении жалобы.\nВозможные причины: «жалоба не по форме»,«нехватка/фальсификация улик».", icon_url= member.avatar_url)
+		emb.set_thumbnail(url = "https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif")
+		emb.add_field(name = "\u200b", value = """*Рекомендуем вам пересмотреть свою жалобу.*""")
+		await channel.send(embed = emb)
 
 token = os.environ.get("BOT_TOKEN")
 
