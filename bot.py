@@ -57,7 +57,7 @@ async def on_message(message):
 			author = message.author
 			fchannel = ds.get_channel(713368052699365456)
 			fauthor = message.author
-			await fchannel.send(author.mention + '** подал заявку на жалобу **')
+			await fchannel.send(author.mention + '** подал жалобу **')
 @ds.event
 async def on_member_join(member):
     emojik1 = get(member.guild.emojis, name = "vk")
