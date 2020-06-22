@@ -61,6 +61,7 @@ async def on_message(message):
 @ds.event
 async def on_member_join(member):
     emojik1 = get(member.guild.emojis, name = "vk")
+    emojik2 = get(member.guild.emojis, name = "twitch")
     channel = ds.get_channel(713305916044214292)
     emb = discord.Embed(colour = discord.Color.gold())
     emb.set_author(name = "Добро пожаловать в  официальный Discord \n канал проекта Diadem", icon_url=member.avatar_url)
@@ -75,7 +76,7 @@ async def on_member_join(member):
 **Полезные ссылки:**
 {emojik1}[Группа Вк](https://vk.com/diadem.mine)
 {emojik1}[Правила Проекта](https://vk.com/@diadem.mine-project-rules)
-{emojik1}[Twitch](https://www.twitch.tv/d1adem_)''')
+{emojik2}[Twitch](https://www.twitch.tv/d1adem_)''')
     emb.set_thumbnail(url = 'https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif')
     role = get(member.guild.roles, name = 'Без роли')
     await member.add_roles(role)
