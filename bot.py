@@ -67,24 +67,40 @@ async def on_member_join(member):
     emb.add_field(name = '\u200b', value = f'''**В первую очередь рекомендуем получить**
 **роль для доступа ко всем каналам**
 **[:closed_lock_with_key:Получить роль](https://discord.gg/f3xQBsS)**
+
 **Для комфортного времяпрепровождения**
 **рекомендуем озокомиться с**
 **[:clipboard:Правилами Discord](https://discord.gg/ABppM3S)**
+
 **Полезные ссылки:**
 {emojik1}[Группа Вк](https://vk.com/diadem.mine)
-{emojik1}[Правила Проекта](https://vk.com/@diadem.mine-project-rules)''')
+{emojik1}[Правила Проекта](https://vk.com/@diadem.mine-project-rules)
+{emojik1}[Twitch](https://www.twitch.tv/d1adem_)''')
     emb.set_thumbnail(url = 'https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif')
     role = get(member.guild.roles, name = 'Без роли')
     await member.add_roles(role)
     await channel.send(f'**Приветствую тебя, {member.mention}! :wave:**')
     await channel.send(embed = emb)
+@ds.event
+async def on_voice_state_update(member,before,after):
+    if after.channel.id == 718359790778318918:
+        for guild in ds.guilds:
+            if guild.id == 701453861679792195:
+                mainCategory = discord.utils.get(guild.categories, id=718359671403970620)
+                channel2 = await guild.create_voice_channel(name=f"{member.display_name}",category=mainCategory)
+                await member.move_to(channel2)
+                await channel2.set_permissions(member,manage_channels=True)
+                def check(a,b,c):
+                    return len(channel2.members) == 0
+                await ds.wait_for('voice_state_update', check=check)
+                await channel2.delete()
 
 
 
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 async def answer(ctx, arg, member: discord.Member):
-	#Жалоба рассмотрена. Нарушитель понёс наказание. 
+	#Жалоба рассмотрена. Нарушитель понёс наказание. n
 	#Благодарим Вас за ваше обращение!:thumbsup_tone1:
 	channel = ds.get_channel(715184789858287636)
 	await channel.send(member.mention)
@@ -102,7 +118,7 @@ async def answer(ctx, arg, member: discord.Member):
 		await channel.send(embed = emb)
 	elif arg == "3":
 		emb = discord.Embed(colour = discord.Color.green())
-		emb.set_author(name = "⁣Жалоба рассмотрена. Игрок, на которого была подана вами жалоба, получил сообщение от члена админ.состава с целью вернуть вещи/предоставить дополнительную информации. ⁣", icon_url= member.avatar_url)
+		emb.set_author(name = "⁣Жалоба рассмотрена. Игрок, на которого была подана вами жалоба, получил сообщение от члена админ.состава с целью вернуть вещи/предоставить дополнительную информацию. ⁣", icon_url= member.avatar_url)
 		emb.set_thumbnail(url = "https://media.discordapp.net/attachments/713367810985689110/714404218777239614/anim.gif")
 		emb.add_field(name = "\u200b", value = """*Благодарим Вас за ваше обращение!*⁣:thumbsup_tone1:""")
 		await channel.send(embed = emb)
@@ -115,4 +131,4 @@ async def answer(ctx, arg, member: discord.Member):
 
 token = os.environ.get("BOT_TOKEN")
 
-ds.run(token)
+ds.run("NzEzMzcyNDE3NDA5NDE3MjM2.XvCA0w.GembMPO09i3Jcay0GrlyoBrmv_A")
