@@ -131,4 +131,4 @@ async def answer(ctx, arg, member: discord.Member):
 
 token = os.environ.get("BOT_TOKEN")
 
-ds.run()
+ds.run(token)
