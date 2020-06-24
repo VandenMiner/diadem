@@ -8,7 +8,7 @@ ds = commands.Bot(command_prefix='!')
 async def on_ready():
 	print(ds.get_all_members)
 	print("Why are you gay?")
-	await ds.change_presence(status=discord.Status.online, activity=discord.Game("Наш ip = \"ЗДЕСЬ МОГЛА БЫТЬ ВАША РЕКЛАМА\""))
+	await ds.change_presence(status=discord.Status.online, activity=discord.Game("Minecraft"))
 
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
