@@ -13,6 +13,7 @@ async def on_ready():
     print("Why are you gay?")
     await ds.change_presence(status=discord.Status.online, activity=discord.Game("Minecraft"))
     ds.loop.create_task(rainbowrole("Staff"))
+    
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 async def clean(ctx, amount = 100):
@@ -126,7 +127,8 @@ async def rainbowrole(role):
         print(e)
         pass
         await asyncio.sleep(10)
-        ds.loop.create_task(rainbowrole(rainbowrolename))
+        ds.loop.create_task(rainbowrole("Staff"))
+
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 async def answer(ctx, arg, member: discord.Member):
