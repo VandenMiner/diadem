@@ -126,7 +126,7 @@ async def rainbowrole(role):
         print(e)
         pass
         await asyncio.sleep(10)
-
+        ds.loop.create_task(rainbowrole(rainbowrolename))
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 async def answer(ctx, arg, member: discord.Member):
