@@ -12,7 +12,6 @@ async def on_ready():
     print(ds.get_all_members)
     print("Why are you gay?")
     await ds.change_presence(status=discord.Status.online, activity=discord.Game("Minecraft"))
-    ds.loop.create_task(rainbowrole("Staff"))
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
 async def clean(ctx, amount = 100):
@@ -102,30 +101,6 @@ async def on_voice_state_update(member,before,after):
 
 
 
-
-async def rainbowrole(role):
-    for role in ds.get_guild(701453861679792195).roles:
-        if str(role) == str("Staff"):
-            print("detected role")
-            while not ds.is_closed():
-                try:
-                    await role.edit(color=random.choice(colours))
-                except Exception:
-                    print("can't edit role, make sure the bot role is above the rainbow role and that is have the perms to edit roles")
-                    pass
-                await asyncio.sleep(0.01)
-    print('role with the name "' + "Staff" +'" not found')
-    print("creating the role...")
-    try:
-        await ds.get_guild(701453861679792195).create_role(reason="Created rainbow role", name="Staff")
-        print("role created!")
-        await asyncio.sleep(2)
-        ds.loop.create_task(rainbowrole("Staff"))
-    except Exception as e:
-        print("couldn't create the role. Make sure the bot have the perms to edit roles")
-        print(e)
-        pass
-        await asyncio.sleep(10)
 
 
 @ds.command(pass_context = True)
