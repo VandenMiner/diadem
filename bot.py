@@ -113,7 +113,7 @@ async def rainbowrole(role):
                 except Exception:
                     print("can't edit role, make sure the bot role is above the rainbow role and that is have the perms to edit roles")
                     pass
-                await asyncio.sleep(0.01)
+                await asyncio.sleep(0.1)
     print('role with the name "' + "Staff" +'" not found')
     print("creating the role...")
     try:
