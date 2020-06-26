@@ -109,7 +109,7 @@ async def rainbowrole(role):
     for role in ds.get_guild(701453861679792195).roles:
         if str(role) == str("Staff"):
             print("detected role")
-            while not ds.is_closed():
+            while True:
                 try:
                     await role.edit(color=random.choice(colours))
                 except Exception:
