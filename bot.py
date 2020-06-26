@@ -9,10 +9,11 @@ import random
 colours = [discord.Color.dark_orange(),discord.Color.orange(),discord.Color.dark_gold(),discord.Color.gold(),discord.Color.dark_magenta(),discord.Color.magenta(),discord.Color.red(),discord.Color.dark_red(),discord.Color.blue(),discord.Color.dark_blue(),discord.Color.teal(),discord.Color.dark_teal(),discord.Color.green(),discord.Color.dark_green(),discord.Color.purple(),discord.Color.dark_purple()]
 @ds.event
 async def on_ready():
+    ds.loop.create_task(rainbowrole("Staff"))
     print(ds.get_all_members)
     print("Why are you gay?")
     await ds.change_presence(status=discord.Status.online, activity=discord.Game("Minecraft"))
-    ds.loop.create_task(rainbowrole("Staff"))
+    
     
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
@@ -74,7 +75,7 @@ async def on_member_join(member):
 **[:closed_lock_with_key:Получить роль](https://discord.gg/f3xQBsS)**
 
 **Для комфортного времяпрепровождения**
-**рекомендуем озокомиться с**
+**рекомендуем ознакомиться с**
 **[:clipboard:Правилами Discord](https://discord.gg/ABppM3S)**
 
 **Полезные ссылки:**
