@@ -9,7 +9,6 @@ import random
 colours = [discord.Color.dark_orange(),discord.Color.orange(),discord.Color.dark_gold(),discord.Color.gold(),discord.Color.dark_magenta(),discord.Color.magenta(),discord.Color.red(),discord.Color.dark_red(),discord.Color.blue(),discord.Color.dark_blue(),discord.Color.teal(),discord.Color.dark_teal(),discord.Color.green(),discord.Color.dark_green(),discord.Color.purple(),discord.Color.dark_purple()]
 @ds.event
 async def on_ready():
-    ds.loop.create_task(rainbowrole("Staff"))
     print(ds.get_all_members)
     print("Why are you gay?")
     await ds.change_presence(status=discord.Status.online, activity=discord.Game("Minecraft"))
@@ -104,31 +103,6 @@ async def on_voice_state_update(member,before,after):
 
 
 
-
-async def rainbowrole(role):
-    for role in ds.get_guild(701453861679792195).roles:
-        if str(role) == str("Staff"):
-            print("detected role")
-            while True:
-                try:
-                    await role.edit(color=random.choice(colours))
-                except Exception:
-                    print("can't edit role, make sure the bot role is above the rainbow role and that is have the perms to edit roles")
-                    pass
-                await asyncio.sleep(0.1)
-    print('role with the name "' + "Staff" +'" not found')
-    print("creating the role...")
-    try:
-        await ds.get_guild(701453861679792195).create_role(reason="Created rainbow role", name="Staff")
-        print("role created!")
-        await asyncio.sleep(2)
-        ds.loop.create_task(rainbowrole("Staff"))
-    except Exception as e:
-        print("couldn't create the role. Make sure the bot have the perms to edit roles")
-        print(e)
-        pass
-        await asyncio.sleep(10)
-        ds.loop.create_task(rainbowrole("Staff"))
 
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
