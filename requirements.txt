@@ -3,5 +3,3 @@ aiohttp
 websockets
 chardet
 asyncio
-random
-os
