@@ -8,7 +8,6 @@ import asyncio
 
 
 
-
 ds = commands.Bot(command_prefix='.')
 @ds.event
 async def on_ready():
@@ -35,6 +34,30 @@ async def set(ctx, boss, hours, minutes):
 		await ctx.channel.send(f"<@everyone>\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~<@everyone>\nДо босса **{boss}** осталось **10 минут**!\n<@everyone>\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~<@everyone>")
 		await asyncio.sleep(540)
 		await ctx.channel.send(f"<@everyone>\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~<@everyone>\nВНИМАНИЕ! до босса **{boss}** осталось **1 минута**!\n<@everyone>\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~\~<@everyone>")
+@ds.command(pass_context = True)
+
+
+async def бустерденег(ctx):
+	await ctx.channel.purge(limit = 1)
+	await ctx.channel.send("@everyone")
+	emb = discord.Embed()
+	emb.colour = discord.Colour.lighter_gray()
+	emb.add_field(name = f"Бустер", value = """_Был активирован глобальный бустер денег на 20 минут!_
+**Заходи в игру!**""")
+	emb.set_thumbnail(url = "https://avatanplus.com/files/resources/original/58ca980ab666015ad761e9fb.png")
+	await ctx.channel.send(embed = emb)
+	await ctx.channel.send("@everyone")
+@ds.command(pass_context = True)
+async def бустершардов(ctx):
+	await ctx.channel.purge(limit = 1)
+	await ctx.channel.send("@everyone")
+	emb = discord.Embed()
+	emb.colour = discord.Colour.lighter_gray()
+	emb.add_field(name = f"Бустер", value = """_Был активирован глобальный бустер шардов на 20 минут!_
+**Заходи в игру!**""")
+	await ctx.channel.send(embed = emb)
+	await ctx.channel.send("@everyone")
+
 
 @ds.command(pass_context = True)
 @commands.has_permissions(administrator = True)
